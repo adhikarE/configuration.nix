@@ -117,7 +117,6 @@
    tauon
 
   # Work
-   ciscoPacketTracer8
 
   ];
 
