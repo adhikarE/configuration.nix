@@ -109,14 +109,21 @@
      
 
   # Home 
-   cowsay
-   cmatrix
-   htop
-   neofetch
-   cool-retro-term
-   tauon
+    cowsay
+    cmatrix
+    htop
+    neofetch
+    cool-retro-term
+    tauon
 
   # Work
+    teams-for-linux
+    gns3-gui
+
+  # Networking
+    traceroute
+    whois
+    nmap
 
   ];
 
