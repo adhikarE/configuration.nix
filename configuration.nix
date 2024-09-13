@@ -106,7 +106,6 @@
     neovim 
     vscode
     git
-     
 
   # Home 
     cowsay
@@ -125,6 +124,10 @@
     traceroute
     whois
     nmap
+
+  # Development
+   python3
+   rustup
 
   ];
 
