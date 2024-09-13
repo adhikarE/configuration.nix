@@ -115,6 +115,7 @@
     neofetch
     cool-retro-term
     tauon
+    discord
 
   # Work
     teams-for-linux
