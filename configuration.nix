@@ -115,6 +115,7 @@
     cool-retro-term
     tauon
     discord
+    spotify
 
   # Work
     teams-for-linux
@@ -128,6 +129,11 @@
   # Development
    python3
    rustup
+   python312Packages.pip
+
+  # Games
+   steamPackages.steam-runtime
+
 
   ];
 
