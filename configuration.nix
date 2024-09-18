@@ -117,6 +117,7 @@
    tauon
    discord
    spotify
+   obs-studio
 
   # Work
    teams-for-linux  
