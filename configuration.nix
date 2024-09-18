@@ -106,25 +106,28 @@
     neovim 
     vscode
     git
+     
 
   # Home 
-    cowsay
-    cmatrix
-    htop
-    neofetch
-    cool-retro-term
-    tauon
-    discord
-    spotify
+   cowsay
+   cmatrix
+   htop
+   neofetch
+   cool-retro-term
+   tauon
+   discord
+   spotify
 
   # Work
-    teams-for-linux
-    gns3-gui
-
+   teams-for-linux  
+   gns3-gui
+   gns3-server
+   ciscoPacketTracer8
+   
   # Networking
-    traceroute
-    whois
-    nmap
+   nmap
+   traceroute
+   whois
 
   # Development
    python3
@@ -132,8 +135,7 @@
    python312Packages.pip
 
   # Games
-   steamPackages.steam-runtime
-
+  # steamPackages.steam-runtime
 
   ];
 
