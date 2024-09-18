@@ -106,29 +106,31 @@
     neovim 
     vscode
     git
-     
 
   # Home 
-   cowsay
-   cmatrix
-   htop
-   neofetch
-   cool-retro-term
-   tauon
-   discord
-   spotify
-   obs-studio
+    cowsay
+    cmatrix
+    htop
+    neofetch
+    cool-retro-term
+    tauon
+    
+    discord
+    vesktop	# A dependency in NixOs for wayland to support screen sharing in discord
+
+    spotify
+    obs-studio
 
   # Work
-   teams-for-linux  
-   gns3-gui
-   gns3-server
-   ciscoPacketTracer8
-   
+    teams-for-linux
+    gns3-gui
+    gns3-server
+    ciscoPacketTracer8
+
   # Networking
-   nmap
-   traceroute
-   whois
+    traceroute
+    whois
+    nmap
 
   # Development
    python3
@@ -137,6 +139,7 @@
 
   # Games
   # steamPackages.steam-runtime
+
 
   ];
 
