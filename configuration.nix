@@ -126,6 +126,7 @@
     gns3-gui
     gns3-server
     ciscoPacketTracer8
+    obsidian
 
   # Networking
     traceroute
