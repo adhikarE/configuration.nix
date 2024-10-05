@@ -104,6 +104,7 @@
     
   # House
     neovim 
+    xclip
     vscode
     git
 
