@@ -136,6 +136,7 @@
     gns3-server
     ciscoPacketTracer8
     obsidian
+    libreoffice-qt6-still
 
   # Networking
     traceroute
