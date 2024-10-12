@@ -92,6 +92,19 @@
     ];
   };
 
+  users.users.dooth = {
+
+    isNormalUser = true;
+    home = "/home/dooth";
+    description = "SSH Client";
+    extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+    {REDACTED}
+    ];
+
+};
+
   # Install firefox.
   programs.firefox.enable = true;
   
@@ -142,6 +155,9 @@
     traceroute
     whois
     nmap
+
+  # Security
+    fail2ban
 
   # Development
    python3
