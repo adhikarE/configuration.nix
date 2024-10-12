@@ -92,6 +92,19 @@
     ];
   };
 
+  users.users.dooth = {
+
+    isNormalUser = true;
+    home = "/home/dooth";
+    description = "SSH Client";
+    extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+    {REDACTED}
+    ];
+
+};
+
   # Install firefox.
   programs.firefox.enable = true;
   
@@ -143,6 +156,9 @@
     whois
     nmap
 
+  # Security
+    fail2ban
+
   # Development
    python3
    rustup
@@ -171,7 +187,8 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
+  networking.firewall.allowPing = false;  
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
