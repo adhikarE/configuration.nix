@@ -165,8 +165,9 @@
    rustup
    python312Packages.pip
    gcc
+
+ # Debugging
    gdb
-   libgcc
 
   # Games
   # steamPackages.steam-runtime
