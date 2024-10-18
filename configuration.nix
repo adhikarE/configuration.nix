@@ -166,6 +166,7 @@
    python312Packages.pip
    gcc
    gdb
+   libgcc
 
   # Games
   # steamPackages.steam-runtime
