@@ -165,6 +165,7 @@
    rustup
    python312Packages.pip
    gcc
+   gdb
 
   # Games
   # steamPackages.steam-runtime
