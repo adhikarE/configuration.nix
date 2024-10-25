@@ -160,6 +160,12 @@
     fail2ban
     snort
 
+  # Foresics
+   wireshark
+   
+  # Reverse Engineering
+   pwntools
+
   # Development
    python3
    rustup
