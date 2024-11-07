@@ -162,6 +162,7 @@
 
   # Foresics
    wireshark
+   exif
    
   # Reverse Engineering
    pwntools
