@@ -160,6 +160,7 @@
   # Security
     fail2ban
     snort
+    openvpn
 
   # Foresics
    wireshark
