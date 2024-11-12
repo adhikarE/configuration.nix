@@ -137,6 +137,7 @@
     cool-retro-term
     tauon
     cava
+    glow
     
     discord
     vesktop	# A dependency in NixOs for wayland to support screen sharing in discord
