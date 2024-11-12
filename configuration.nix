@@ -92,6 +92,19 @@
     ];
   };
 
+  users.users.dooth = {
+
+    isNormalUser = true;
+    home = "/home/dooth";
+    description = "SSH Client";
+    extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.bash;
+    openssh.authorizedKeys.keys = [
+    {REDACTED}
+    ];
+
+};
+
   # Install firefox.
   programs.firefox.enable = true;
   
@@ -123,6 +136,7 @@
     neofetch
     cool-retro-term
     tauon
+    cava
     
     discord
     vesktop	# A dependency in NixOs for wayland to support screen sharing in discord
@@ -143,10 +157,26 @@
     whois
     nmap
 
+  # Security
+    fail2ban
+    snort
+    openvpn
+
+  # Foresics
+   wireshark
+   exif
+   
+  # Reverse Engineering
+   pwntools
+
   # Development
    python3
    rustup
    python312Packages.pip
+   gcc
+
+ # Debugging
+   gdb
 
   # Games
   # steamPackages.steam-runtime
@@ -181,5 +211,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  services.fail2ban.enable = true;
 
 }
