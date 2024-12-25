@@ -179,6 +179,7 @@
 
  # Debugging
    gdb
+   zap
 
   # Games
   # steamPackages.steam-runtime
