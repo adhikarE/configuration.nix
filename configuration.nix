@@ -157,6 +157,7 @@
     traceroute
     whois
     nmap
+    dig
 
   # Security
     fail2ban
