@@ -180,7 +180,7 @@
 
  # Debugging
    gdb
-   zap
+   burpsuite
 
   # Games
   # steamPackages.steam-runtime
