@@ -128,6 +128,7 @@
     xclip
     vscode
     git
+    google-chrome
 
   # Home 
     cowsay
