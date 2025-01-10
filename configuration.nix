@@ -159,6 +159,7 @@
     whois
     nmap
     dig
+    inetutis
 
   # Security
     fail2ban
