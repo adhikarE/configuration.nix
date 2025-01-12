@@ -170,6 +170,8 @@
    wireshark
    exif
    hashid
+   autopsy
+   sleuthkit # Autopsy wont run without this package
    
   # Reverse Engineering
    pwntools
