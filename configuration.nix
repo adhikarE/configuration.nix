@@ -83,9 +83,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.snatchar = {
+  users.users.adhikari = {
     isNormalUser = true;
-    description = "snatchar";
+    description = "adhikari";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     #  thunderbird
