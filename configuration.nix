@@ -54,6 +54,11 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Enable Virtual Box
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = ["adhikari"];
+
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -170,8 +175,8 @@
    wireshark
    exif
    hashid
-   autopsy
-   sleuthkit # Autopsy wont run without this package
+   # autopsy
+   # sleuthkit # Autopsy wont run without this package
    
   # Reverse Engineering
    pwntools
