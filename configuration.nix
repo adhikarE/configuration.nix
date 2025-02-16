@@ -133,7 +133,7 @@
     xclip
     vscode
     git
-    google-chrome
+    # google-chrome # For compatibility with certain sites
 
   # Home 
     cowsay
