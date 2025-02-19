@@ -166,6 +166,12 @@
     dig
     inetutils
 
+  # GNS 3 Setup
+    gns3-gui
+    gns3-server
+    dynamips
+    vpcs
+
   # Security
     fail2ban
     snort
