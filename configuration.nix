@@ -180,6 +180,8 @@
    
   # Reverse Engineering
    pwntools
+   pdf-parser
+   file
 
   # Development
    python3
