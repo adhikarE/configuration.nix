@@ -182,6 +182,7 @@
    pwntools
    pdf-parser
    file
+   oletools
 
   # Development
    python3
