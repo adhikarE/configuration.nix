@@ -183,6 +183,7 @@
    hashid
    # autopsy
    # sleuthkit # Autopsy wont run without this package
+   e2fsprogs
    
   # Reverse Engineering
    pwntools
