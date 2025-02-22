@@ -190,6 +190,7 @@
    pdf-parser
    file
    oletools
+   binwalk
 
   # Development
    python3
