@@ -165,6 +165,7 @@
     nmap
     dig
     inetutils
+    netdiscover
 
   # GNS 3 Setup
     gns3-gui
