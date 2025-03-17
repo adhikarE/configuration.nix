@@ -185,6 +185,7 @@
    # autopsy
    # sleuthkit # Autopsy wont run without this package
    e2fsprogs
+   hexedit
    
   # Reverse Engineering
    pwntools
