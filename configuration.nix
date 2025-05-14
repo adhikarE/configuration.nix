@@ -174,7 +174,6 @@
     vpcs
 
   # Security
-    fail2ban
     snort
     openvpn
 
@@ -228,8 +227,14 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = true;
-  networking.firewall.allowPing = false;  
+
+  networking.nftables.enable = true;
+  networking.firewall = {
+
+	enable = true;
+	allowPing = false;
+
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -238,7 +243,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
-  services.fail2ban.enable = true;
 
 }
