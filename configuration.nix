@@ -112,7 +112,23 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  
+
+boot.kernelPatches = [
+    {
+
+      name = "Rust Support";
+      patch = null;
+
+      features = {
+
+        rust = true;
+
+      };
+
+    }
+
+  ];
+
   # Allow Steam To Run
   programs.steam = {
     enable = true;
@@ -228,13 +244,28 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
 
-  networking.nftables.enable = true;
-  networking.firewall = {
+  networking = {
 
-	enable = true;
-	allowPing = false;
+  	# Enable networking
+  	networkmanager.enable = true;
+  	
+  	hostName = "REDACTED";
+	
+	enableIPv6 = false;
 
-  };
+	nftables.enable = true;
+
+  	firewall = {
+
+		enable = true;
+		allowPing = false;
+		allowedTCPPorts = [ ];
+		allowedUDPPorts = [ ];
+		logRefusedPackets = true;
+
+  	};
+
+};
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
