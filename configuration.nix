@@ -121,7 +121,7 @@ boot.kernelPatches = [
 
       features = {
 
-        rust = true;
+        rust = false;	# Make sure the Kernel is above 6.7
 
       };
 
