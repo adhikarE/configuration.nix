@@ -65,6 +65,13 @@
     variant = "";
   };
 
+  services.tor = {
+
+    enable = true;
+    openFirewall = true;
+
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
