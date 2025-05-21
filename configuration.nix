@@ -147,6 +147,12 @@ boot.kernelPatches = [
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  security.pki.certificateFiles = [
+
+	# Specify certificate file location
+
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
      environment.systemPackages = with pkgs; [
@@ -259,6 +265,12 @@ boot.kernelPatches = [
   	hostName = "REDACTED";
 	
 	enableIPv6 = false;
+
+	extraHosts = ''
+	  192.168.5.26 teleport.rudra.local
+	  192.168.5.16 nextcloud.rudra.local
+	  192.168.5.33 gitlab.rudra.local
+	'';
 
 	nftables.enable = true;
 
