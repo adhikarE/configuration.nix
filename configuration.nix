@@ -162,6 +162,7 @@ boot.kernelPatches = [
     xclip
     vscode
     git
+    gimp
     # google-chrome # For compatibility with certain sites
 
   # Home 
