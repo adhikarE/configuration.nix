@@ -254,21 +254,61 @@ boot.kernelPatches = [
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Device Network Hardening
+
+  services.udev.extraRules = ''
+    # Match RTL-SDR: Realtek Semiconductor Corp. RTL2838 DVB-T
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838", MODE="0666", GROUP="plugdev"
+  '';
+
+  boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" "rtl2832" "r820t" ];
+
   networking = {
 
-  	# Enable networking
-  	networkmanager.enable = true;
+  # Enable networking
+  networkmanager.enable = true;
   	
-  	hostName = "REDACTED";
+  hostName = "REDACTED";
 	
-	enableIPv6 = false;
+  enableIPv6 = false;
+
+  wireguard = {
+    
+    enable = true;
+    
+    interfaces = {
+	wg0 = {
+	   ips = [ "10.12.0.41/32" ]; # Replace with your assigned client IP
+	   listenPort = 51820;        # Optional; only needed if not default or you are accepting inbound traffic
+	   # mtu = 1360;                # Optional; include if needed
+	   privateKeyFile = "/home/adhikari/.wireguard/priv";
+
+	   peers = [
+		{
+		  publicKey = "nxdlRhfXT3tmn2hOFVCPUsxIPE4A3Ayq3W8V5sCkr2Y=";
+		  endpoint = "114.143.238.94:51820";
+		  allowedIPs = [
+		    "10.12.0.0/24"
+		    "192.168.5.0/24"
+		    "192.168.1.0/24"
+		  ];
+		  persistentKeepalive = 25;
+	  }
+      	];
+      };
+    };
+  };
+
+  # Optional: Make sure routing is enabled if needed
+  # networking.nat.enable = true;
+  # networking.nat.externalInterface = "eth0";  # Replace with your real external interface
 
 	extraHosts = ''
 	  192.168.5.26 teleport.rudra.local
 	  192.168.5.16 nextcloud.rudra.local
 	  192.168.5.33 gitlab.rudra.local
 	'';
-
+	
 	nftables.enable = true;
 
   	firewall = {
@@ -282,6 +322,13 @@ boot.kernelPatches = [
   	};
 
 };
+
+  security.pki.certificateFiles = [
+
+	/home/adhikari/.ca-certificates/teleport.rudra.local.crt
+	/home/adhikari/.ca-certificates/nextcloud.rudra.local.crt
+
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
