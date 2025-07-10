@@ -58,6 +58,7 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = ["adhikari"];
 
+  services.openssh.enable = true;  # This enables the SSH server
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -172,12 +173,13 @@ boot.kernelPatches = [
     neofetch
     cool-retro-term
     tauon
+    kid3-qt
     cava
-    glow
-    flameshot
-    
+    glow    
+    gimp
     discord
     vesktop	# A dependency in NixOs for wayland to support screen sharing in discord
+    xournalpp
 
     spotify
     obs-studio
