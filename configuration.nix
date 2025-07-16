@@ -25,7 +25,26 @@
 
 	};
 
+	kernelPatches = [
+	    {
+
+	      name = "Rust Support";
+	      patch = null;
+
+	      features = {
+
+		rust = false;	# Make sure the Kernel is above 6.7
+
+	      };
+
+	    }
+
+	  ];
+
+	kernelModules = ["rtw89"];
+
   };
+
 
 
   # Set your time zone.
@@ -118,23 +137,6 @@
     ];
   };
 
-  boot.kernelPatches = [
-    {
-
-      name = "Rust Support";
-      patch = null;
-
-      features = {
-
-        rust = false;	# Make sure the Kernel is above 6.7
-
-      };
-
-    }
-
-  ];
-
-
   programs = {
 
 	  # Allow Steam To Run
@@ -169,6 +171,7 @@
     vscode
     git
     gimp
+    usbutils
     # google-chrome # For compatibility with certain sites
 
   # Home 
