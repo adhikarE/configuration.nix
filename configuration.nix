@@ -247,6 +247,95 @@
   # Games
   # steamPackages.steam-runtime
 
+  (pkgs.writeShellScriptBin "nixos-update" ''
+      #!/run/current-system/sw/bin/bash
+
+      STDOUT="/var/log/update_STDOUT.log"
+
+      EXIT_CODE=0
+
+      # Check if running as root
+      if [ "$EUID" -ne 0 ]; then
+          echo "This script needs root privileges. Re-running with sudo..."
+          exec sudo "$0" "$@"
+      else
+        echo "STDOUT: $STDOUT"
+      fi
+
+      echo -n "Do you want to update the channels? (y/N): "
+      read -r response
+
+      if [[ "$response" == "y" || "$response" == "Y" ]]; 
+      then
+        echo "Updating nix channels..."
+        
+        echo "STDOUT: nix-channel update @ $(date)" >>"$STDOUT"
+
+        nix-channel --update 2>>"$STDOUT"
+
+        if [[ $? -ne 0 ]];
+        then
+            echo "ERRORS ENCOUNTERED DURING UPDATING CHANNELS. Check $STDOUT for more details..."
+            EXIT_CODE=1
+        fi
+
+        echo  >>"$STDOUT"
+
+      else
+        echo "Skipping updating channels..."
+      fi
+
+      echo -n "Do you want to build the /etc/nixos/configuration.nix file? (y/N): "
+      read -r response
+
+      if [[ "$response" == "y" || "$response" == "Y" ]];
+      then
+        echo "Preparing the build..."
+
+        echo "STDOUT: /etc/nixos/configuration.nix build @ $(date)" >>"$STDOUT"
+
+        nixos-rebuild build 2>>"$STDOUT"
+
+        if [[ $? -ne 0 ]];
+        then
+            echo "ERRORS ENCOUNTERED DURING BUILDING /etc/nixos/configuration.nix. Check $STDOUT for more details..."
+            EXIT_CODE=1
+        fi
+
+        echo  >>"$STDOUT"
+
+      else
+        echo "Skipping the build of /etc/nixos/configuration.nix..."
+      fi
+
+      echo -n "Do you want to switch to the recent build? (y/N): "
+      read -r response
+
+      if [[ "$response" == "y" || "$response" == "Y" ]]; 
+      then
+        # Run the system rebuild
+        echo "Switching system to recent build..."
+
+        echo "STDOUT: /etc/nixos/configuration.nix switch @ $(date)" >>"$STDOUT"
+
+        nixos-rebuild switch 2>>"$STDOUT"
+
+        if [[ $? -ne 0 ]];
+        then
+            echo "ERRORS ENCOUNTERED DURING SWITCHING SYSTEM TO THE NEW BUILD. Check $STDOUT for more details..."
+            EXIT_CODE=1
+        fi
+
+        echo  >>"$STDOUT"
+
+      else
+        echo "Skipping switch..."
+      fi
+
+      echo "Done."
+      exit $EXIT_CODE
+    '')
+
   ];
 
   # Device Network Hardening
