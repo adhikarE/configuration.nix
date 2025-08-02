@@ -251,22 +251,10 @@
       #!/run/current-system/sw/bin/bash
 
       STDOUT="/var/log/update_STDOUT.log"
-
       EXIT_CODE=0
 
-      # Check if running as root
-      if [ "$EUID" -ne 0 ]; then
-          echo "This script needs root privileges. Re-running with sudo..."
-          exec sudo "$0" "$@"
-      else
-        echo "STDOUT: $STDOUT"
-      fi
+      update_channels() {
 
-      echo -n "Do you want to update the channels? (y/N): "
-      read -r response
-
-      if [[ "$response" == "y" || "$response" == "Y" ]]; 
-      then
         echo "Updating nix channels..."
         
         echo "STDOUT: nix-channel update @ $(date)" >>"$STDOUT"
@@ -281,15 +269,10 @@
 
         echo  >>"$STDOUT"
 
-      else
-        echo "Skipping updating channels..."
-      fi
+      }
 
-      echo -n "Do you want to build the /etc/nixos/configuration.nix file? (y/N): "
-      read -r response
+      build_configuration() {
 
-      if [[ "$response" == "y" || "$response" == "Y" ]];
-      then
         echo "Preparing the build..."
 
         echo "STDOUT: /etc/nixos/configuration.nix build @ $(date)" >>"$STDOUT"
@@ -304,15 +287,10 @@
 
         echo  >>"$STDOUT"
 
-      else
-        echo "Skipping the build of /etc/nixos/configuration.nix..."
-      fi
+      }
 
-      echo -n "Do you want to switch to the recent build? (y/N): "
-      read -r response
+      switch_to_configuration(){
 
-      if [[ "$response" == "y" || "$response" == "Y" ]]; 
-      then
         # Run the system rebuild
         echo "Switching system to recent build..."
 
@@ -328,12 +306,109 @@
 
         echo  >>"$STDOUT"
 
+      }
+
+      # Check if running as root
+      if [ "$1" = "nnn" ]; then
+
+         :
+
+      elif [ "$EUID" -ne 0 ]; then
+          echo "This script needs root privileges. Re-running with sudo..."
+          exec sudo "$0" "$@"
+
       else
-        echo "Skipping switch..."
+
+        echo "STDOUT: $STDOUT"
+
+      fi
+
+      if [ "$1" = "nnn" ]; then
+         
+         :
+
+      elif [ "$1" = "nny" ]; then
+
+         switch_to_configuration
+
+      elif [ "$1" = "nyn" ]; then
+
+         build_configuration
+
+      elif [ "$1" = "nyy" ]; then
+
+         build_configuration
+         switch_to_configuration
+
+      elif [ "$1" = "ynn" ]; then
+
+         update_channels
+
+      elif [ "$1" = "yny" ]; then
+
+         update_channels
+         switch_to_configuration
+
+      elif [ "$1" = "yyn" ]; then
+
+         update_channels
+         build_configuration
+
+      elif [ "$1" = "yyy" ]; then
+
+         update_channels
+         build_configuration
+         switch_to_configuration
+
+      else
+
+         ### CHANNEL UPDATE
+
+         echo -n "Do you want to update the channels? (y/N): "
+         read -r response
+
+         if [[ "$response" == "y" || "$response" == "Y" ]]; 
+         then
+
+            update_channels
+
+         else
+           echo "Skipping updating channels..."
+         fi
+
+         ### BUILD
+
+         echo -n "Do you want to build the /etc/nixos/configuration.nix file? (y/N): "
+         read -r response
+
+         if [[ "$response" == "y" || "$response" == "Y" ]];
+         then
+
+            build_configuration
+
+         else
+           echo "Skipping the build of /etc/nixos/configuration.nix..."
+         fi
+
+         ### SWICTH
+
+         echo -n "Do you want to switch to the recent build? (y/N): "
+         read -r response
+
+         if [[ "$response" == "y" || "$response" == "Y" ]]; 
+         then
+
+            switch_to_configuration
+
+         else
+           echo "Skipping switch..."
+         fi
+
       fi
 
       echo "Done."
       exit $EXIT_CODE
+
     '')
 
   ];
