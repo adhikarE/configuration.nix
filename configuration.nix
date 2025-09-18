@@ -216,6 +216,7 @@
   # Security
     snort
     openvpn
+	veracrypt
 
   # Foresics
    wireshark
