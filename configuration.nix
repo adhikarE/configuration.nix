@@ -139,6 +139,13 @@
 
   programs = {
 
+	  nix-ld = {
+
+	    enable = true;	
+
+ 	 };
+
+
 	  # Allow Steam To Run
 	  steam = {
 	    enable = true;
