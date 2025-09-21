@@ -240,6 +240,9 @@
    file
    oletools
    binwalk
+   # ghidra
+   strace
+   ltrace
 
   # Development
    python3
