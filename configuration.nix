@@ -179,6 +179,7 @@
     git
     gimp
     usbutils
+	# chromium # For compatibility with certain sites
     # google-chrome # For compatibility with certain sites
 
   # Home 
@@ -195,9 +196,12 @@
     discord
     vesktop	# A dependency in NixOs for wayland to support screen sharing in discord
     xournalpp
+    anki
 
     spotify
     obs-studio
+    linuxKernel.packages.linux_zen.v4l2loopback # OBS Virtual Camera Dependency 
+
 
   # Work
     teams-for-linux
