@@ -10,6 +10,8 @@
 
   boot = {
 
+    extraModulePackages = [ config.boot.kernelPackages.rtl8821au config.boot.kernelPackages.v4l2loopback ];
+
 	loader = {
 
 		  # Bootloader.
@@ -24,6 +26,10 @@
 		  efi.canTouchEfiVariables = true;
 
 	};
+
+   extraModprobeConfig = ''
+       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+     '';
 
 	kernelPatches = [
 	    {
@@ -41,7 +47,7 @@
 
 	  ];
 
-	kernelModules = ["rtw89"];
+	kernelModules = [ "8821au" "v4l2loopback"];
 
   };
 
@@ -123,9 +129,14 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = ["adhikari"];
 
+  hardware = {
+
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  pulseaudio.enable = false;
+  
+  enableAllFirmware = true;   # To enable support for all types of network cards
+
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.adhikari = {
@@ -166,7 +177,21 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+
+      # Allow unfree packages
+      config.allowUnfree = true;
+
+      # Setup for rtl8821au network card
+      overlays = [
+       (final: prev: {
+         rtl8821au = prev.callPackage ./pkgs/rtl8821au.nix {
+           kernel = config.boot.kernelPackages.kernel;
+         };
+       })
+      ];
+
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -200,8 +225,7 @@
 
     spotify
     obs-studio
-    linuxKernel.packages.linux_zen.v4l2loopback # OBS Virtual Camera Dependency 
-
+    v4l-utils # Virtual Camera Dependency for OBS
 
   # Work
     teams-for-linux
@@ -525,11 +549,18 @@
 
 };
 
-  security.pki.certificateFiles = [
+  security = {
 
-	# Specify certificate file location
+   rtkit.enable = true;
+   polkit.enable = true;
+   pki.certificateFiles = [
+
+	  # Specify certificate file location
 
   ];
+
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
