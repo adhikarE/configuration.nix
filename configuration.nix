@@ -10,7 +10,9 @@
 
   boot = {
 
-    extraModulePackages = [ config.boot.kernelPackages.rtl8821au config.boot.kernelPackages.v4l2loopback ];
+    extraModulePackages = [ config.boot.kernelPackages.rtl8821au ];
+    # extraModulePackages = [ config.boot.kernelPackages.rtl8821au config.boot.kernelPackages.v4l2loopback ];	# NetCard support comes with kernel 25.11
+
 
 	loader = {
 
@@ -47,7 +49,9 @@
 
 	  ];
 
-	kernelModules = [ "8821au" "v4l2loopback"];
+	kernelModules = [ "v4l2loopback"];
+	# kernelModules = [ "8821au" "v4l2loopback"];	# NetCard support comes with kernel 25.11
+
 
   };
 
@@ -183,13 +187,13 @@
       config.allowUnfree = true;
 
       # Setup for rtl8821au network card
-      overlays = [
-       (final: prev: {
-         rtl8821au = prev.callPackage ./pkgs/rtl8821au.nix {
-           kernel = config.boot.kernelPackages.kernel;
-         };
-       })
-      ];
+      # overlays = [
+      # (final: prev: {
+      #   rtl8821au = prev.callPackage ./pkgs/rtl8821au.nix {
+      #     kernel = config.boot.kernelPackages.kernel;
+      #   };
+      # })
+      #];	# NetCard support comes with kernel 25.11
 
   };
 
@@ -525,7 +529,7 @@
       };
   };
 
-  wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # proxy.default = "http://user:password@proxy:port/";
@@ -568,6 +572,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
 }
