@@ -10,7 +10,7 @@
 
   boot = {
 
-    extraModulePackages = [ config.boot.kernelPackages.rtl8821au ];
+    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     # extraModulePackages = [ config.boot.kernelPackages.rtl8821au config.boot.kernelPackages.v4l2loopback ];	# NetCard support comes with kernel 25.11
 
 
@@ -52,13 +52,16 @@
 	kernelModules = [ "v4l2loopback"];
 	# kernelModules = [ "8821au" "v4l2loopback"];	# NetCard support comes with kernel 25.11
 
-
   };
 
 
 
   # Set your time zone.
-  time.timeZone = "Asia/Kolkata";
+  time = {
+
+	timeZone = "Asia/Kolkata";
+
+  };
 
   i18n = {
 
@@ -130,8 +133,19 @@
 
 
   # Enable Virtual Box
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = ["adhikari"];
+  virtualisation = {
+  
+  	virtualbox = {
+  	
+  		host = {
+  		
+  			enable = true;
+
+		};
+
+	};
+
+  };
 
   hardware = {
 
@@ -143,6 +157,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.extraGroups.vboxusers.members = ["adhikari"];
   users.users.adhikari = {
     isNormalUser = true;
     description = "adhikari";
