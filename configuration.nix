@@ -11,7 +11,12 @@
   boot = {
 
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-    # extraModulePackages = [ config.boot.kernelPackages.rtl8821au config.boot.kernelPackages.v4l2loopback ];	# NetCard support comes with kernel 25.11
+    # extraModulePackages = [ 
+
+		# config.boot.kernelPackages.rtl8821au 	# NetCard support comes with kernel 25.11. Only include if on older kernels or if the driver gets uninstalled somehow
+		config.boot.kernelPackages.v4l2loopback 
+
+	];
 
 
 	loader = {
@@ -34,7 +39,7 @@
      '';
 
 	kernelModules = [ "v4l2loopback"];
-	# kernelModules = [ "8821au" "v4l2loopback"];	# NetCard support comes with kernel 25.11
+	# kernelModules = [ "8821au" "v4l2loopback"];	# NetCard support comes with kernel 25.11. Un-comment if using a lower kernel version
 
   };
 
