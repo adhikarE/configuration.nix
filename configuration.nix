@@ -248,8 +248,6 @@
 
   # Work
     teams-for-linux
-    gns3-gui
-    gns3-server
     obsidian
     libreoffice-qt6-still
 
