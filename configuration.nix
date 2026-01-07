@@ -212,6 +212,13 @@
     git
     gimp
     usbutils
+    asciidoc-full
+    asciidoctor
+    ollama
+    sox
+    mysql84
+    unzip
+
 	# chromium # For compatibility with certain sites
     # google-chrome # For compatibility with certain sites
 
@@ -247,6 +254,7 @@
     dig
     inetutils
     netdiscover
+    net-snmp
 
   # GNS 3 Setup
     gns3-gui
@@ -267,6 +275,9 @@
    # sleuthkit # Autopsy wont run without this package
    e2fsprogs
    hexedit
+   thunderbird # Email Forensics
+   tor
+   tor-browser
    
   # Reverse Engineering
    pwntools
