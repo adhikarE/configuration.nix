@@ -294,6 +294,7 @@
    rustup
    python312Packages.pip
    gcc
+   nodejs_24
 
  # Debugging
    gdb
