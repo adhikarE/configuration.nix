@@ -160,7 +160,7 @@
 
 	  nix-ld = {
 
-	    enable = true;	
+	    enable = true;	# Enable dynamic library linking for executables
 
  	 };
 
